@@ -1,0 +1,16 @@
+bonfire8458-export-posts:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    my_cool_key: My Cool Key
+
+  forum:
+    user:
+      export: Export
+      title: Export User Database
+      page:
+        post: post
+        reply: reply
+        click: download
+        
+    
