@@ -1,12 +1,11 @@
 import app from "flarum/forum/app";
-import UserPage,{ IUserPageAttrs } from "flarum/forum/components/UserPage";
-import extractText from "flarum/common/utils/extractText";
+import UserPage, {IUserPageAttrs} from "flarum/forum/components/UserPage";
+import ExtractText from "flarum/common/utils/extractText";
 import Mithril from 'mithril';
 import User from "flarum/common/models/User";
 import ItemList from "flarum/common/utils/ItemList";
 import FieldSet from "flarum/common/components/FieldSet";
 import Button from "flarum/common/components/Button";
-import listItems from "flarum/common/helpers/listItems";
 
 
 export default class UserExportPage<CustomAttrs extends IUserPageAttrs = IUserPageAttrs> extends UserPage<CustomAttrs> {
@@ -16,14 +15,14 @@ export default class UserExportPage<CustomAttrs extends IUserPageAttrs = IUserPa
     oninit(vnode: Mithril.Vnode<CustomAttrs, this>) {
         super.oninit(vnode);
         const routeUsername = m.route.param("username");
-        
+
         if(routeUsername !== app.session.user?.slug()){
             m.route.set("/");
         }
 
         this.show(app.session.user!);
-    
-        app.setTitle(extractText(app.translator.trans('bonfire8458-export-posts.forum.user.title')));
+
+        app.setTitle(ExtractText(app.translator.trans('bonfire8458-export-posts.forum.user.title')));
     }
 
     content() {
@@ -49,14 +48,14 @@ export default class UserExportPage<CustomAttrs extends IUserPageAttrs = IUserPa
             m("input[type=checkbox]"),
             app.translator.trans("bonfire8458-export-posts.forum.user.page.reply")
         ]),-2);
-        
+
+        // TODO: form need to add a url to the form. The address is " /api/{name}/export_posts "
         items.add(
             "ExportPostButton",
-            Button.component({
+          Button.component({
                 class: "Button Button--primary",
                 type: "submit",
                 loading: false,
-                
             },
                 app.translator.trans("bonfire8458-export-posts.forum.user.page.click"),
             ),
